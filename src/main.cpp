@@ -1,10 +1,10 @@
-#include <Arduino.h>
+
 
 /*********
   Rui Santos
   Complete project details at https://RandomNerdTutorials.com
 *********/
-
+#include <Arduino.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
 
@@ -18,7 +18,7 @@ OneWire oneWire(ONE_WIRE_BUS);
 // Pass our oneWire reference to Dallas Temperature sensor
 DallasTemperature sensors(&oneWire);
 
-float suhu;
+// float suhu;
 
 void setup()
 {
@@ -30,8 +30,12 @@ void setup()
 
 void loop()
 {
-  sensors.setResolution(12);
   sensors.requestTemperatures();
-  suhu = sensors.getTempCByIndex(0);
-  Serial.println(suhu, 4);
+  float temperatureC = sensors.getTempCByIndex(0);
+  // float temperatureF = sensors.getTempFByIndex(0);
+  Serial.print(temperatureC);
+  Serial.println("ºC");
+  // Serial.print(temperatureF);
+  // Serial.println("ºF");
+  delay(1000);
 }
